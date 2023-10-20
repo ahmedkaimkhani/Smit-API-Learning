@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -14,8 +16,8 @@ class _UserApiState extends State<UserApi> {
     var url = Uri.https('jsonplaceholder.typicode.com', '/users');
 
     var response = await http.get(url);
-    var responseBody = response.body;
-    print(responseBody);
+    var responseBody = jsonDecode(response.body);
+    print(responseBody[0]['address']['city']);
   }
 
   @override
