@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smit_api_learning/screens/home_view.dart';
+import 'package:smit_api_learning/screens/without%20model%20user%20api/user_api.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Homeview());
+        home: const UserApi());
   }
 }
