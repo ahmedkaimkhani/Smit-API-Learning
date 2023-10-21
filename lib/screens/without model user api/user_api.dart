@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class UserApi extends StatefulWidget {
-  const UserApi({super.key});
+class UserModelWithoutModel extends StatefulWidget {
+  const UserModelWithoutModel({super.key});
 
   @override
-  State<UserApi> createState() => _UserApiState();
+  State<UserModelWithoutModel> createState() => _UserModelWithoutModelState();
 }
 
-class _UserApiState extends State<UserApi> {
+class _UserModelWithoutModelState extends State<UserModelWithoutModel> {
   getPosts() async {
     var url = Uri.https('jsonplaceholder.typicode.com', '/users');
 
