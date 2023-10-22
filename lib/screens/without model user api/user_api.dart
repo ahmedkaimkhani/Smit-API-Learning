@@ -17,19 +17,35 @@ class _UserModelWithoutModelState extends State<UserModelWithoutModel> {
 
     var response = await http.get(url);
     var responseBody = jsonDecode(response.body);
-    print(responseBody[0]['address']['city']);
+    return responseBody;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await getPosts();
-        },
-        tooltip: 'increment',
-        child: const Icon(Icons.add),
+      appBar: AppBar(
+        title: const Text('Api learning'),
       ),
+      body: FutureBuilder(
+          future: getPosts(),
+          builder: ((BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              print(snapshot.data);
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(snapshot.data[index]['name']),
+                    subtitle: Text(snapshot.data[index]['email']),
+                  );
+                },
+              );
+            }
+            // else if (snapshot.hasError) {
+            //   return const Center(child: Text('something went wrong'));
+            // }
+            return const Center(child: CircularProgressIndicator());
+          })),
     );
   }
 }
