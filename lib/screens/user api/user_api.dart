@@ -35,38 +35,54 @@ class _UserApiState extends State<UserApi> {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Fetching Api Data',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                  ),
+                  Switch(
+                    inactiveThumbColor: Colors.black,
+                    value: isDarkMode,
+                    onChanged: (value) {
+                      toggleTheme();
+                    },
+                  )
+                ],
+              ),
+            ),
             const SizedBox(
               height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Fetching Api Data',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-                ),
-                Switch(
-                  inactiveThumbColor: Colors.black,
-                  value: isDarkMode,
-                  onChanged: (value) {
-                    toggleTheme();
-                  },
-                )
-              ],
             ),
             FutureBuilder(
                 future: getUserData(),
                 builder: ((BuildContext context,
                     AsyncSnapshot<List<UserModel>> snapshot) {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return const ListTile();
-                    },
-                  );
+                  if (snapshot.hasData) {
+                    return Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title:
+                                Text(snapshot.data?[index].name ?? 'No Name'),
+                            subtitle:
+                                Text(snapshot.data?[index].email ?? 'No email'),
+                          );
+                        },
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Center(child: Text('something went wrong'));
+                  }
+                  return const CircularProgressIndicator();
                 })),
           ],
         ),
