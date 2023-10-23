@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:smit_api_learning/main.dart';
 import 'package:http/http.dart' as http;
+import 'package:smit_api_learning/screens/user%20api/user_profile.dart';
 import 'package:smit_api_learning/services/user_model.dart';
 
 class UserApi extends StatefulWidget {
@@ -70,11 +71,20 @@ class _UserApiState extends State<UserApi> {
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            title:
-                                Text(snapshot.data?[index].name ?? 'No Name'),
-                            subtitle:
-                                Text(snapshot.data?[index].email ?? 'No email'),
+                          final allUsersData = snapshot.data?[index];
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        UserProfile(user: allUsersData),
+                                  ));
+                            },
+                            child: ListTile(
+                              title: Text(allUsersData?.name ?? 'No Name'),
+                              subtitle: Text(allUsersData?.email ?? 'No email'),
+                            ),
                           );
                         },
                       ),
