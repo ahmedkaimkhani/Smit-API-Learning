@@ -52,7 +52,6 @@ class _UserApiState extends State<UserApi> {
                   inactiveThumbColor: Colors.black,
                   value: isDarkMode,
                   onChanged: (value) {
-                    print(isDarkMode);
                     toggleTheme();
                   },
                 )
@@ -65,7 +64,7 @@ class _UserApiState extends State<UserApi> {
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
-                      return ListTile();
+                      return const ListTile();
                     },
                   );
                 })),
