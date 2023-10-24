@@ -32,6 +32,14 @@ class _UserApiState extends State<UserApi> {
     return allUsers;
   }
 
+  Color? customTileColorMethod(index) {
+    if (2 % index == 1) {
+      return Colors.green[200];
+    } else {
+      return Colors.yellow[200];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,9 +90,13 @@ class _UserApiState extends State<UserApi> {
                                       UserProfile(user: allUsersData),
                                 ));
                           },
-                          child: ListTile(
-                            title: Text(allUsersData?.name ?? 'No Name'),
-                            subtitle: Text(allUsersData?.email ?? 'No email'),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 5),
+                            child: ListTile(
+                              tileColor: Colors.green[200],
+                              title: Text(allUsersData?.name ?? 'No Name'),
+                              subtitle: Text(allUsersData?.email ?? 'No email'),
+                            ),
                           ),
                         );
                       },

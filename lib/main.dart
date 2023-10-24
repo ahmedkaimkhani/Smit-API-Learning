@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         key: UniqueKey(),
         title: 'Api Learning',
         debugShowCheckedModeBanner: false,
-        theme: isDarkMode ? darkTheme : lightTheme,
+        theme: isDarkMode ? lightTheme : darkTheme,
         // theme: ThemeData(
         //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         //   useMaterial3: true,
