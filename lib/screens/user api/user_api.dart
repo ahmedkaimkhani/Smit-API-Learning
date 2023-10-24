@@ -82,8 +82,29 @@ class _UserApiState extends State<UserApi> {
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 5),
                             child: ListTile(
-                              title: Text(allUsersData?.name ?? 'No Name'),
+                              title: Text(
+                                allUsersData?.name ?? 'No Name',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                               subtitle: Text(allUsersData?.email ?? 'No email'),
+                              trailing: Text(
+                                allUsersData?.id.toString() ?? 'No id',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    provider.theme.brightness == Brightness.dark
+                                        ? null
+                                        : Colors.black,
+                                child: const Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
                         );
@@ -95,7 +116,11 @@ class _UserApiState extends State<UserApi> {
                 }
                 return Center(
                   child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: Colors.white, size: 60),
+                    color: provider.theme.brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
+                    size: 60,
+                  ),
                 );
               }),
             ),

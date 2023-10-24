@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smit_api_learning/services/user_model.dart';
@@ -51,6 +52,7 @@ class _UserProfileState extends State<UserProfile> {
                     child: const Icon(
                       Icons.person,
                       size: 50,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -58,7 +60,7 @@ class _UserProfileState extends State<UserProfile> {
                   height: 08,
                 ),
                 Text(
-                  'Id: ${user!.id}',
+                  'I D : ${user!.id}',
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.w500),
                 ),
@@ -66,8 +68,14 @@ class _UserProfileState extends State<UserProfile> {
                   height: 20,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    const Icon(
+                      Icons.person,
+                      size: 20,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     Text(
                       'Name :  ${user.name}',
                       style: const TextStyle(
@@ -79,8 +87,14 @@ class _UserProfileState extends State<UserProfile> {
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    const Icon(
+                      Icons.alternate_email_outlined,
+                      size: 20,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     Text(
                       'Email :  ${user.email}',
                       style: const TextStyle(
@@ -92,8 +106,14 @@ class _UserProfileState extends State<UserProfile> {
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    const Icon(
+                      Icons.phone,
+                      size: 20,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     Text(
                       'Phone :  ${user.phone}',
                       style: const TextStyle(
@@ -105,8 +125,14 @@ class _UserProfileState extends State<UserProfile> {
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    const Icon(
+                      CupertinoIcons.globe,
+                      size: 20,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     Text(
                       'Website :  ${user.website}',
                       style: const TextStyle(
