@@ -43,6 +43,23 @@ class _UserApiState extends State<UserApi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   title: const Text(
+      //     'Fetching Api Data',
+      //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+      //   ),
+      //   actions: [
+      //     Switch(
+      //       inactiveThumbColor: Colors.black,
+      //       value: isDarkMode,
+      //       onChanged: (value) {
+      //         toggleTheme();
+      //       },
+      //     )
+      //   ],
+      // ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15),
@@ -93,7 +110,6 @@ class _UserApiState extends State<UserApi> {
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 5),
                             child: ListTile(
-                              tileColor: Colors.green[200],
                               title: Text(allUsersData?.name ?? 'No Name'),
                               subtitle: Text(allUsersData?.email ?? 'No email'),
                             ),
