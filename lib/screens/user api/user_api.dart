@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smit_api_learning/main.dart';
 import 'package:http/http.dart' as http;
+import 'package:smit_api_learning/screens/user%20api/theme_provider.dart';
 import 'package:smit_api_learning/screens/user%20api/user_profile.dart';
 import 'package:smit_api_learning/services/user_model.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -15,12 +17,6 @@ class UserApi extends StatefulWidget {
 }
 
 class _UserApiState extends State<UserApi> {
-  void toggleTheme() {
-    setState(() {
-      isDarkMode = !isDarkMode;
-    });
-  }
-
   Future<List<UserModel>> getUserData() async {
     List<UserModel> allUsers = [];
     var url = Uri.https('jsonplaceholder.typicode.com', '/users');
@@ -32,16 +28,9 @@ class _UserApiState extends State<UserApi> {
     return allUsers;
   }
 
-  Color? customTileColorMethod(index) {
-    if (2 % index == 1) {
-      return Colors.green[200];
-    } else {
-      return Colors.yellow[200];
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Colors.transparent,
@@ -76,9 +65,10 @@ class _UserApiState extends State<UserApi> {
                   ),
                   Switch(
                     inactiveThumbColor: Colors.black,
-                    value: isDarkMode,
+                    activeColor: Colors.white,
+                    value: provider.theme.brightness == Brightness.dark,
                     onChanged: (value) {
-                      toggleTheme();
+                      provider.toggleTheme();
                     },
                   )
                 ],
