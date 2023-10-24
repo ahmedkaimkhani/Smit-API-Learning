@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:smit_api_learning/screens/user%20api/theme_provider.dart';
 import 'package:smit_api_learning/screens/user%20api/user_api.dart';
 
-bool isDarkMode = false;
-
 void main() {
   runApp(const MyApp());
 }

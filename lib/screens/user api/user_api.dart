@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smit_api_learning/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:smit_api_learning/screens/user%20api/theme_provider.dart';
 import 'package:smit_api_learning/screens/user%20api/user_profile.dart';
@@ -32,23 +31,6 @@ class _UserApiState extends State<UserApi> {
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   title: const Text(
-      //     'Fetching Api Data',
-      //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-      //   ),
-      //   actions: [
-      //     Switch(
-      //       inactiveThumbColor: Colors.black,
-      //       value: isDarkMode,
-      //       onChanged: (value) {
-      //         toggleTheme();
-      //       },
-      //     )
-      //   ],
-      // ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15),

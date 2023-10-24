@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smit_api_learning/main.dart';
+import 'package:provider/provider.dart';
 import 'package:smit_api_learning/services/user_model.dart';
+
+import 'theme_provider.dart';
 
 class UserProfile extends StatefulWidget {
   final UserModel? user;
@@ -14,7 +16,7 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     final user = widget.user;
-
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -25,7 +27,9 @@ class _UserProfileState extends State<UserProfile> {
             },
             icon: Icon(
               Icons.arrow_back_ios_new_outlined,
-              color: isDarkMode == true ? Colors.white : Colors.black,
+              color: provider.theme.brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
             )),
       ),
       body: SafeArea(
@@ -40,9 +44,10 @@ class _UserProfileState extends State<UserProfile> {
                 Center(
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundColor: isDarkMode == true
-                        ? Colors.yellow[200]
-                        : Colors.green[200],
+                    backgroundColor:
+                        provider.theme.brightness == Brightness.dark
+                            ? Colors.yellow[200]
+                            : Colors.green[200],
                     child: const Icon(
                       Icons.person,
                       size: 50,
