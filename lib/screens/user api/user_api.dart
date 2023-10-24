@@ -5,6 +5,7 @@ import 'package:smit_api_learning/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:smit_api_learning/screens/user%20api/user_profile.dart';
 import 'package:smit_api_learning/services/user_model.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class UserApi extends StatefulWidget {
   const UserApi({super.key});
@@ -62,38 +63,42 @@ class _UserApiState extends State<UserApi> {
               height: 15,
             ),
             FutureBuilder(
-                future: getUserData(),
-                builder: ((BuildContext context,
-                    AsyncSnapshot<List<UserModel>> snapshot) {
-                  if (snapshot.hasData) {
-                    return Expanded(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          final allUsersData = snapshot.data?[index];
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        UserProfile(user: allUsersData),
-                                  ));
-                            },
-                            child: ListTile(
-                              title: Text(allUsersData?.name ?? 'No Name'),
-                              subtitle: Text(allUsersData?.email ?? 'No email'),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  } else if (snapshot.hasError) {
-                    return const Center(child: Text('something went wrong'));
-                  }
-                  return const CircularProgressIndicator();
-                })),
+              future: getUserData(),
+              builder: ((BuildContext context,
+                  AsyncSnapshot<List<UserModel>> snapshot) {
+                if (snapshot.hasData) {
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final allUsersData = snapshot.data?[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      UserProfile(user: allUsersData),
+                                ));
+                          },
+                          child: ListTile(
+                            title: Text(allUsersData?.name ?? 'No Name'),
+                            subtitle: Text(allUsersData?.email ?? 'No email'),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('something went wrong'));
+                }
+                return Center(
+                  child: LoadingAnimationWidget.staggeredDotsWave(
+                      color: Colors.white, size: 60),
+                );
+              }),
+            ),
           ],
         ),
       )),
