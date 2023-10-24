@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smit_api_learning/main.dart';
 import 'package:smit_api_learning/services/user_model.dart';
 
 class UserProfile extends StatefulWidget {
@@ -15,11 +16,14 @@ class _UserProfileState extends State<UserProfile> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: Text(widget.user!.id.toString()),
+            CircleAvatar(
+              backgroundColor:
+                  isDarkMode == true ? Colors.yellow[200] : Colors.green[200],
+              child: Icon(Icons.person),
             ),
-            Text(widget.user!.name.toString())
           ],
         ),
       ),
