@@ -59,13 +59,13 @@ class _UserApiState extends State<UserApi> {
             const SizedBox(
               height: 15,
             ),
-            FutureBuilder(
-              future: getUserData(),
-              builder: ((BuildContext context,
-                  AsyncSnapshot<List<UserModel>> snapshot) {
-                if (snapshot.hasData) {
-                  return Expanded(
-                    child: ListView.builder(
+            Expanded(
+              child: FutureBuilder(
+                future: getUserData(),
+                builder: ((BuildContext context,
+                    AsyncSnapshot<List<UserModel>> snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
                       shrinkWrap: true,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
@@ -109,20 +109,20 @@ class _UserApiState extends State<UserApi> {
                           ),
                         );
                       },
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Center(child: Text('something went wrong'));
+                  }
+                  return Center(
+                    child: LoadingAnimationWidget.staggeredDotsWave(
+                      color: provider.theme.brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                      size: 60,
                     ),
                   );
-                } else if (snapshot.hasError) {
-                  return const Center(child: Text('something went wrong'));
-                }
-                return Center(
-                  child: LoadingAnimationWidget.staggeredDotsWave(
-                    color: provider.theme.brightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
-                    size: 60,
-                  ),
-                );
-              }),
+                }),
+              ),
             ),
           ],
         ),
